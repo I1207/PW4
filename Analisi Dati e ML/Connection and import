@@ -1,0 +1,11 @@
+serverName = "sqlserver-pw.database.windows.net" 
+databaseName = "db-ai"
+username = "girls"
+password = "Password?"
+
+cnxn = pyodbc.connect('DRIVER={SQL Server};SERVER='+serverName+';DATABASE='+databaseName+';UID='+username+';PWD='+ password)
+cursor = cnxn.cursor()
+
+query = "SELECT [Permanenza],[ConsumoMedio_annuo],[ConsumoTotale],[MargineFissoQF_annuo],[MargineFissoTotale],[MargineVariabileQV],[MargineVariabileQV_annuo],[MargineVariabileTotale],[MargineTotale],[Provvigioni],[Acquisizione],[CostoAnnuo_Post-vendita_Customer-care],[Reddito totale],[MesiBEP],[MesiAttivi],[UltimoReddito],[BEP] FROM pw.DatiConsumi_view;"
+df = pd.read_sql(query, cnxn)
+print(df.head(20))
