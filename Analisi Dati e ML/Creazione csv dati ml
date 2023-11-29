@@ -1,15 +1,18 @@
-for target in targets:
-    y_1 = df_1[target]
-    features_to_exclude = [target]
-    X_1 = df_1.drop(features_to_exclude, axis=1)
+for name, model in models.items():
+    # Create an empty DataFrame to store results for the current model
+    model_results_df = pd.DataFrame()
 
-    X_train, X_test, y_train, y_test = train_test_split(X_1, y_1, test_size=0.25, random_state=42)
-    scaler = StandardScaler()
-    X_train = scaler.fit_transform(X_train)
-    X_test = scaler.transform(X_test)
+    # Loop over targets
+    for target in targets:
+        y_1 = df_1[target]
+        features_to_exclude = [target]
+        X_1 = df_1.drop(features_to_exclude, axis=1)
 
-    # Loop over models
-    for name, model in models.items():
+        X_train, X_test, y_train, y_test = train_test_split(X_1, y_1, test_size=0.25, random_state=42)
+        scaler = StandardScaler()
+        X_train = scaler.fit_transform(X_train)
+        X_test = scaler.transform(X_test)
+
         # Define the parameter grid for the current model
         param_grid = param_grids.get(name, {})  # Get the corresponding hyperparameter grid
 
@@ -24,9 +27,12 @@ for target in targets:
         # Make predictions
         y_pred = best_model.predict(X_test)
 
-        result_df = pd.DataFrame(X_test, columns=X_1.columns)
-        result_df[target + '_true'] = y_test
-        result_df[target + '_pred'] = y_pred
+        # Add columns for the current target to the overall results DataFrame
+        model_results_df[target + f'_{name}_true'] = y_test
+        model_results_df[target + f'_{name}_pred'] = y_pred
 
-        # Save to a CSV file
-        result_df.to_csv(f'{name}_{target}_result.csv', index=False)
+    # Add columns for X_test to the overall results DataFrame
+    model_results_df[X_1.columns] = X_test
+
+    # Save the results for the current model to a CSV file
+    model_results_df.to_csv(f'{name}_all_targets_result.csv', index=False)
