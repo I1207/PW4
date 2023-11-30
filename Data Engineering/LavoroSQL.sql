@@ -20,14 +20,13 @@ GO
 ALTER TABLE [lab10].[DatiConsumi]
 DROP COLUMN 
 	 [Data trasf. in usc.]	        -- row scorrette
-	,[Ind.: Cod.ISTAT Com.]			-- non rilevante, la regione Ë la stessa
 	,[Permanenza (giorni)]			-- fanno tutti almeno 1 mese circa, tranne 2 che hanno fatto 16 e 19 gg
 	,[provv diff]					-- sempre 0
 	,[Altri ricavi annui]			-- pochi valori, non relazionato/rilevante con il resto 
 	,[Coso annuo G&A]				-- fisso al valore 24.580
 	,[Costo annuo personale ESTRA ENERGIE] -- fisso al valore 15.400
 	,[Costo annuo approvvigionamento] -- fisso 0.900
-	,[Costo annuo Mantenimento (da 2∞ anno)] -- fisso 3.040
+	,[Costo annuo Mantenimento (da 2¬∞ anno)] -- fisso 3.040
 
 
 
@@ -49,17 +48,17 @@ SELECT
 	CAST([Data trasf. in entr.] AS [date]) as [DataTrasf.entr.],
 	CAST([Data trasf. in usc. (new)] AS [date]) as [DataTrasf.usc.],
 	CAST(REPLACE([Motivo blocco calc.],'0','') AS [varchar](5)) as [MotivoBloccoCalc.],
-	CAST(REPLACE([Et‡ Anagrafica],'0','') AS [varchar](5)) as [Anagrafica],
+	CAST(REPLACE([Et√† Anagrafica],'0','') AS [varchar](5)) as [Anagrafica],
 	CAST(REPLACE([Settore merceologico],'0','') AS [varchar](5)) as [SettoreMerceologico],
 	CAST(REPLACE([Listino Proposto],'0','') AS [varchar](5)) as [ListinoProposto],
 	CAST(REPLACE([Soc. Vend. Prec.],'0','') AS [varchar](5)) as [Soc.Vend.Prec.],
 	CAST(REPLACE([Cluster Soc Vend],'0','') AS [varchar](5)) as [ClusterSocVend],
-	CAST(REPLACE([Localit‡],'0','') AS [varchar](10)) as [Localita],
+	CAST(REPLACE([Localit√†],'0','') AS [varchar](10)) as [Localita],
 	CAST(REPLACE([Ind.: Cod.ISTAT Com.],'0','') AS [varchar](10)) as [Cod.ISTAT] ,
 	CAST(REPLACE([Provincia],'0','') AS [varchar](10)) as [Provincia] ,
 	CAST(REPLACE([Regione Italiana],'0','') AS [varchar](10)) as [RegioneItaliana] ,
 	CAST(REPLACE([zona],'0','') AS [varchar](10)) as  [Zona],
-	CAST(REPLACE([Modalit‡ di pagamento],'0','') AS [varchar](5)) as [ModoPagamento],
+	CAST(REPLACE([Modalit√† di pagamento],'0','') AS [varchar](5)) as [ModoPagamento],
 	CAST([Permanenza (mesi)] AS float ) as [Permanenza],
 	CAST([Consumo medio annuo] AS float) as [ConsumoMedio_annuo],
 	CAST([Consumo totale] AS float ) as [ConsumoTotale],
@@ -69,7 +68,7 @@ SELECT
 	CAST([Margine variabile QV annuo] AS float ) as [MargineVariabileQV_annuo],
 	CAST([Margine variabile totale] AS float) as [MargineVariabileTotale],
 	CAST([Margine totale] AS float ) as [MargineTotale],
-	CAST([Provvigioni (Ä/swin)] AS float ) as [Provvigioni],
+	CAST([Provvigioni (‚Ç¨/swin)] AS float ) as [Provvigioni],
 	CAST([Acquisizione] AS float ) as [Acquisizione],
 	CAST([Costo annuo Post-vendita e Customer care] AS float ) as [CostoAnnuo_Post-vendita_Customer-care],
 	CAST([Reddito totale] AS float) as [Reddito totale],
